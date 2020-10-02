@@ -79,20 +79,26 @@ function changePosition() {
     document.getElementById('carimage').style.left = '200px';
 }
 
-// Funktio siirtää kuvaa vuorotellen 150 pikseliä oikealle ja 150 pikseliä vasemmalle.
-// Ajattelin ensin tehdä sellaisen, joka liikuttaisi kuvaa pikkuhiljaa ruudun reunasta toiseen, mutta
-// se olisi vaatinut säätöä alkuperäiseen html:ään (jota pyrin tässä tehtävässä välttämään), joten jätin
-// sen tekemättä.
+// Seuravassa funktio, joka liikuttaa kuvaa oikealta vasemmalle 100 pikselin alueella 10 pikselin askelilla
+var suunta = "oikea";  // Apumuuttuja liikumisen suunnan määrittämiseen
+
 function doMove() {
     var kuva = document.getElementById('carimage');
     var position = parseInt(kuva.style.left.replace('px',''),10);   // Haetaan kuvan x-koordinaatti ja parsitaan se kokonaisluvuksi
-    if (position < 100) {           
-        position += 150;                    // Liikutetaan kuvaa oikealle tai vasemmalle sen x-koordinaatista riippuen
-    } else {
-        position -= 150;
+    
+    if (suunta === "oikea") {   // Liikutetaan oikealle
+        position += 10;
+        if (position >= 100) {  // Vaihdetaan suuntaa
+            suunta = "vasen";
+        }
+    } else {                    // Liikutetaan vasemmalle
+        position -= 10;
+        if (position <= 0) {
+            suunta = "oikea";   // Vaihdetaan suuntaa
+        }
     }
 
-    kuva.style.left = position + 'px';
+    kuva.style.left = position + 'px';  // Päivitetään kuvan paikkaa
 }
 
 // Funktio feidaa kuvan hitaasti pois näkyvistä, elementti jää silti näkyviin sivulle
