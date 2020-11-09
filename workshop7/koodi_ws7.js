@@ -92,7 +92,7 @@ function iltalehti() {
     alert('Sori, tämäkään ei toimi...');
     var newsPlace = document.getElementById('newsfeed');  // Asetetaan uutissyötteen paikka
     var xmlhttp = new XMLHttpRequest(); // Luodaan XML-kutsu
-    xmlhttp.open("GET", "http://www.iltalehti.fi/rss/uutiset.xml", false); // Asetetaan kutsun attribuutit
+    xmlhttp.open("GET", "https://www.iltalehti.fi/rss/uutiset.xml", true); // Asetetaan kutsun attribuutit
     xmlhttp.send(); // Lähetetään kutsu
     xmlhttp.onreadystatechange = function() {   // Odotetaan vastausta
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { // Saadaan vastaus
