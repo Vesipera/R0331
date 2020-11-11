@@ -88,8 +88,9 @@ function yahooNews() {
 // Funktio hakee iltalehden uutissyötteen ja asettaa sen ruudulle näkyviin listana,
 // ikävä kyllä kaikki yritykseni xml-tiedon hakemiseen kaatuivat
 // "CORS header ‘Access-Control-Allow-Origin’ missing" -virheeseen =(
+//
+// Update 11.11.: Asensin CORS-lisäosan Firefoxiin ja nyt toimii!
 function iltalehti() {
-    alert('Sori, tämäkään ei toimi...');
     var newsPlace = document.getElementById('newsfeed');  // Asetetaan uutissyötteen paikka
     var xmlhttp = new XMLHttpRequest(); // Luodaan XML-kutsu
     xmlhttp.open("GET", "https://www.iltalehti.fi/rss/uutiset.xml", true); // Asetetaan kutsun attribuutit
