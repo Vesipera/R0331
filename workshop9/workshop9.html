@@ -1,0 +1,179 @@
+<!-- JavaScript-kurssin workshop 9 -->
+<!-- Janne Lahdenperä 2020         -->
+<HTML>
+
+<head>
+  <meta charset="utf-8">
+  <title>Workshop 9</title>
+</head>
+
+<style>
+body {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color: #333333;
+}
+
+div {
+  width: 200px;
+  height: 100px;
+  border: 1px solid black;
+}
+table, tr, td{
+  border: 1px solid gray;
+  width: 50%;
+}
+img {
+  position: relative;
+  left:0px;
+}
+/* Tyylimäärittely omalle selvitys- ja vastaustekstille */
+.red {
+  color: red;
+}
+</style>
+
+<!-- Haetaan viimeisin versio, esimerkkipohjassa mainittu versio on vuodelta 2016! -->
+<script
+	src="http://code.jquery.com/jquery-3.5.1.min.js"
+	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous">
+</script>
+  
+<body>
+
+<h1>Workshop 9: Using jQuery</h1><hr />
+<p>In this exercise we will practice the use of jQuery JavaScript library. Use the lecture-material as a reference guide side by side
+these exercises. It might also be a good idea to save the lines of code you write during the exercises for later use.</p>
+<h2>Exercise 1: Adding jQuery to document</h2>
+<pre>In order to get jQuery-functions available to your webpage, you need to add the jQuery library as part of your page. This can be
+done by adding a script tag, which will reference to jQuery online or to a local file.
+
+&lt;script&gt;
+  src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;
+  integrity=&quot;sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=&quot;
+  crossorigin=&quot;anonymous&quot;&gt; &lt;/script&gt;
+
+See <a href="http://code.jquery.com">code.jquery.com</a> for latest version.
+</pre>
+<p>Go Ahead and add the line above to this pages HTML-code. Then reload the page. You can make sure that jQuery is up and
+running by typing $ at the console. </p>
+<h2>Exercise 2: Basic Dom Scripting</h2>
+<p>So far, we have created JavaScript by hooking the code to a button etc. A good way to learn jQuery (and JavaScript) is to try
+things in the console. So open the Developer Tools (F12) and try to accomplish the following tasks. </p>
+<p>How would you:</p>
+<ol>
+  <!-- Omat vastaukset kirjoitettu punaisella -->
+  <li>Find a reference to all H3 -tags?</li>
+  <code class="red">$('h3');</code>
+  <li>Find a reference to div with an id='contant' and replace the contents with a text of your choice else?</li>
+  <code class="red">$('#contant').html('of your choice else');</code>
+  <li>Find a reference to the img and replace the src attribute with some other image online?</li>
+  <code class="red">$('img').attr('src', 'address to the new image');</code>
+  <li>Find the element with a class sideBarListBox and show/hide it?</li>
+  <code class="red">$('.sideBarListBox').show(); // $('.sideBarListBox').hide();</code>
+  <li>Find any li element that contains the text &quot;Lorem&quot; and add css underline -attribute to them?</li>
+  <code class="red">$('li:contains(Lorem)').css('text-decoration', 'underline');</code>
+  <li>Find all the anchor tags within the class SideBarListBox and apply css modifications of your choice to them.</li>
+  <code class="red">$('.sideBarListBox:a')css('color', 'black');</code>
+</ol>
+<h2>&nbsp;</h2>
+<h2>Exercise 3: Effects and animation</h2>
+<p>See: https://api.jquery.com/category/effects/</p>
+<ul>
+  <p>Add the following functionality to buttons below:</p>
+  <p>
+    <!-- Nappien tekstit muutettu kuvaaviksi -->
+    <input type="button" name="button" id="button" value="Fade in">
+    <input type="button" name="button2" id="button2" value="Fade out">
+    <input type="button" name="button3" id="button3" value="Slide up">
+    <input type="button" name="button4" id="button4" value="Slide down">
+    <input type="button" name="button5" id="button5" value="Animate">
+  </p>
+  <code class="red">I'm using h2-elements for all these buttons, so the effects are easier to see</code>
+  <li>Fade in the main heading of the page</li>
+  <li>Fade out the main heading of the page</li>
+  <li>SlideUp the main contents of the page</li>
+  <li>SlideDown the main contents of the page</li>
+  <li>Study the animate() -function. Write an animation sequence of your own on the page</li>
+</ul>
+<p>&nbsp;</p>
+  <h2>Exercise 4: Ajax</h2>
+<li>First try Ajax with console. Use load() -function</li>
+to inject content from the web (ex. http://www.iltalehti.fi/rss.xml) into the div below.
+<li>Then write a JavaScript function, which will fire when the pulldown menu item is changed. Each selection loads a different content
+from web to the div below. </li>
+<li>Change the pulldown item names accordingly as well.
+  <!-- Käytin AJAX-kutsuissa edellisen workshopin apia, koska tiedän että se toimii ongelmitta -->
+  <code class="red"><br>I used the same openweathermap API as in Workshop 8
+    <br>I also used get() instead of load()</code>
+  <p>Select an item from the list.</p>
+  <select name="mySelect" id="mySelect" onchange="">
+    <option value="first">City name
+    <option value="second">Temperature
+    <option value="third">Weather description
+  </select>
+  <br>
+  <br>
+  <div id="ajax" style="border: 1px solid black; width: 400px;">
+
+  </div>
+</li>
+<h2>&nbsp;</h2>
+
+<!-- Kaikki koodi löytyy täältä! -->
+
+<script>
+  // Nappi palauttaa h2-elementin näkyviin
+  $('#button').click(function() {
+    $('h2').fadeIn();
+  });
+
+  // Nappi piilottaa h2-elementin
+  $('#button2').click(function() {
+    $('h2').fadeOut();
+  });
+
+  // Nappi piilottaa h2-elementin liukuefektillä
+  $('#button3').click(function() {
+    $('h2').slideUp();
+  });
+
+  // Nappi tuo h2-elementin esiin liukuefektillä
+  $('#button4').click(function() {
+    $('h2').slideDown();
+  });
+
+  // Nappi vilkuttaa h2-elementtiä muutaman kerran
+  $('#button5').click(function() {
+    var h2 = $('h2');
+    h2.animate({opacity: '0'}, 'slow');
+    h2.animate({opacity: '1'}, 'slow');
+    h2.animate({opacity: '0'});
+    h2.animate({opacity: '1'});
+    h2.animate({opacity: '0'}, 'slow');
+    h2.animate({opacity: '1'}, 'slow');
+  });
+
+  // Pudotusvalikon valintaa vaihtamalla haetaan tiedot APIsta,
+  // tallennetaan ne muuttujaan ja viedään tiedot eteenpäin käsiteltäviksi
+  $('#mySelect').change(function() {
+    $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Helsinki%0B&units=metric&mode=JSON&APPID=ff64c247a136f706923d1ee0d55d71e2",
+     function(json){
+       var data = json;
+       checkData(data);
+       });
+  });
+
+  // Muutetaan div-elementissä näkyvä teksti sen mukaan, mikä pudotusvalikon arvo on
+  function checkData(data) {
+    if ($('#mySelect').val() == "first") {
+      $('div').html(data.name);
+    } else if ($('#mySelect').val() == "second") {
+      $('div').html(data.main.temp);
+    } else {
+      $('div').html(data.weather[0].description);
+    }
+  }
+</script>
+
+</html>
